@@ -1,6 +1,8 @@
-# Base DataJoint Test Image
+# DJTest
 
-## Launch locally
+A base docker image for running tests related to DataJoint.
+
+# Launch locally
 
 
 `docker-compose -f dist/alpine/docker-compose.yml --env-file config/.env up --build`
@@ -8,6 +10,6 @@ OR
 `docker-compose -f dist/debian/docker-compose.yml --env-file config/.env up --build`
 
 
-## Notes
+# Notes
 
-https://hub.docker.com/r/raphaelguzman/djtest
+https://hub.docker.com/r/datajoint/djtest

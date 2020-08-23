@@ -6,7 +6,7 @@ services:
       dockerfile: ./dist/alpine/Dockerfile
       args:
         - PY_VER
-    image: raphaelguzman/djtest:py${PY_VER}-alpine
+    image: datajoint/djtest:py${PY_VER}-alpine
     environment:
       - DISPLAY                             # Necessary to allow GUI to route to Docker host
     user: ${UID}:anaconda                   # Necessary to allow GUI to route to Docker host
