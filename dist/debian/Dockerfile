@@ -1,12 +1,15 @@
+ARG BASE_IMAGE_HASH
 ARG PY_VER
 
-FROM datajoint/djbase:py${PY_VER}-debian as jup_build
+FROM datajoint/djbase:py${PY_VER}-debian-${BASE_IMAGE_HASH} as jup_build
 USER dja:anaconda
-
+COPY --chown=dja:anaconda ./config/pip_requirements.txt /tmp/
 RUN \
     umask u+rwx,g+rwx,o-rwx && \
-    export PY_VER=$(python -c "import sys;print(sys.version)" | head -1 | awk '{print $1}') && \
-    pip install --no-cache-dir nose nose-cov coveralls flake8 && \
+    export PY_VER=$(python -c "import sys;print(sys.version)" | \
+        head -1 | awk '{print $1}') && \
+    /entrypoint.sh echo "Requirements updated..." && \
+    rm $PIP_REQUIREMENTS && \
     conda clean -ya && \
     find /opt/conda/conda-meta -user dja -exec chmod u+rwx,g+rwx,o-rwx "{}" \; && \
     chmod -R o+w /home/dja/.cache
@@ -21,12 +24,11 @@ LABEL maintainerName="Raphael Guzman" \
 USER dja:anaconda
 ENV HOME /home/dja
 ENV LANG C.UTF-8
-ENV APT_REQUIREMENTS /apt_requirements.txt
-ENV PIP_REQUIREMENTS /pip_requirements.txt
-ENV CONDA_REQUIREMENTS /conda_requirements.txt
+ENV APT_REQUIREMENTS /tmp/apt_requirements.txt
+ENV PIP_REQUIREMENTS /tmp/pip_requirements.txt
+ENV CONDA_REQUIREMENTS /tmp/conda_requirements.txt
 ENV PATH "/home/dja/.local/bin:/opt/conda/bin:$PATH"
 ENTRYPOINT ["/entrypoint.sh"]
-WORKDIR /src
-VOLUME /src
+WORKDIR /main
 VOLUME /tmp/.X11-unix
 CMD ["/bin/bash", "-l"]
