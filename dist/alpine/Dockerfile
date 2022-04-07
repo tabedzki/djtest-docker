@@ -34,4 +34,4 @@ ENTRYPOINT ["/entrypoint.sh"]
 WORKDIR /home/anaconda
 VOLUME /tmp/.X11-unix
 EXPOSE 8888
-CMD ["bash"]
+CMD ["sh"]
