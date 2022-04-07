@@ -26,7 +26,12 @@ Alpine
 Features
 ********
 
-- 
+- Adds testing libraries:
+  - nose
+  - nose-cov
+  - coveralls
+  - flake8
+- Applies image compresssion
 
 Usage Notes
 ***********
