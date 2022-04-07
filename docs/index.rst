@@ -31,6 +31,7 @@ Features
   - nose-cov
   - coveralls
   - flake8
+  - black
 - Applies image compresssion
 
 Usage Notes
