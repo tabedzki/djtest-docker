@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'datajoint/djlab'
-copyright = '2020, Raphael Guzman'
-author = 'Raphael Guzman'
+project = 'datajoint/djtest'
+copyright = '2020-2022, Datajoint Contributors'
+author = 'Datajoint Contributors'
 
 # The full version, including alpha/beta/rc tags
 release = '0.0.0'

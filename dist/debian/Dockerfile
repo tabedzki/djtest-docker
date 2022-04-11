@@ -30,7 +30,7 @@ ENV APT_REQUIREMENTS /tmp/apt_requirements.txt
 ENV PIP_REQUIREMENTS /tmp/pip_requirements.txt
 ENV CONDA_REQUIREMENTS /tmp/conda_requirements.txt
 ENTRYPOINT ["/entrypoint.sh"]
-WORKDIR /home/anaconda
+WORKDIR /main
 VOLUME /tmp/.X11-unix
 EXPOSE 8888
 CMD ["bash"]

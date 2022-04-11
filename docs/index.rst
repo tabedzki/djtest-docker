@@ -27,17 +27,13 @@ Features
 ********
 
 - Adds testing libraries:
-  - nose
-  - nose-cov
-  - coveralls
+  - pytest
+  - pytest-cov
   - flake8
   - black
+  - ptvsd
+  - faker
 - Applies image compresssion
-
-Usage Notes
-***********
-
-- 
 
 Testing
 *******
