@@ -183,7 +183,7 @@ jobs:
       PY_VER: ${{matrix.py_ver}}
       PLATFORM: ${{matrix.platform}}
       DOCKER_USERNAME: ${{secrets.docker_username}}
-      DOCKER_PASSWORD: ${{secrets.docker_password}}
+      DOCKER_ACCESS_TOKEN: ${{secrets.docker_access_token}}
     steps:
       - uses: actions/checkout@v2
       - name: Determine platform tag
@@ -196,7 +196,7 @@ jobs:
           name: ${{format('py{0}-{1}-{2}', matrix.py_ver, matrix.distro, env.PLATFORM_TAG)}}
       - name: Publish image
         run: |
-          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          echo "$DOCKER_ACCESS_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
           docker load < "py${PY_VER}-${DISTRO}-${PLATFORM_TAG}.tar.gz"
           REF=$(eval "echo $(cat dist/${DISTRO}/docker-compose.yaml | grep 'image:' | \
               awk '{print $2}')")
