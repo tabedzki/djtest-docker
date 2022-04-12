@@ -1,4 +1,4 @@
-version: '2.4'
+version: '3.7'
 services:
   app:
     build:                                  # Uncomment to enable local build
@@ -10,6 +10,6 @@ services:
     image: datajoint/djtest:py${PY_VER}-alpine
     environment:
       - DISPLAY                             # Necessary to allow GUI to route to Docker host
-    user: ${UID}:anaconda                   # Necessary to allow GUI to route to Docker host
+    user: ${HOST_UID}:anaconda              # Necessary to allow GUI to route to Docker host
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw    # Necessary to allow GUI to route to Docker host
