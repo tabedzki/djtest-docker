@@ -1,4 +1,6 @@
-nose
-nose-cov
-coveralls
+pytest
+pytest-cov
 flake8
+black
+ptvsd
+faker
