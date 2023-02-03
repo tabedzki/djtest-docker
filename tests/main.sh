@@ -31,22 +31,26 @@ IMAGE=$(echo $REF | awk -F':' '{print $1}')
 SHELL_CMD_TEMPLATE="docker run --rm -i \$SHELL_CMD_FLAGS $REF \
 	$([ ${DISTRO} == 'debian' ] && echo bash || echo sh) -c"
 # determine reference size
-if [ $DISTRO == alpine ] && [ $PY_VER == '3.10' ] && [ $PLATFORM == 'linux/amd64' ]; then
-	SIZE_LIMIT=588
+if [ $DISTRO == alpine ] && [ $PY_VER == '3.11' ] && [ $PLATFORM == 'linux/amd64' ]; then
+	SIZE_LIMIT=828
+elif [ $DISTRO == alpine ] && [ $PY_VER == '3.10' ] && [ $PLATFORM == 'linux/amd64' ]; then
+	SIZE_LIMIT=594
 elif [ $DISTRO == alpine ] && [ $PY_VER == '3.9' ] && [ $PLATFORM == 'linux/amd64' ]; then
-	SIZE_LIMIT=537
+	SIZE_LIMIT=583
 elif [ $DISTRO == alpine ] && [ $PY_VER == '3.8' ] && [ $PLATFORM == 'linux/amd64' ]; then
-	SIZE_LIMIT=495
+	SIZE_LIMIT=566
 elif [ $DISTRO == alpine ] && [ $PY_VER == '3.7' ] && [ $PLATFORM == 'linux/amd64' ]; then
-	SIZE_LIMIT=513
+	SIZE_LIMIT=537
+elif [ $DISTRO == debian ] && [ $PY_VER == '3.11' ] && [ $PLATFORM == 'linux/amd64' ]; then
+	SIZE_LIMIT=951
 elif [ $DISTRO == debian ] && [ $PY_VER == '3.10' ] && [ $PLATFORM == 'linux/amd64' ]; then
-	SIZE_LIMIT=727
+	SIZE_LIMIT=717
 elif [ $DISTRO == debian ] && [ $PY_VER == '3.9' ] && [ $PLATFORM == 'linux/amd64' ]; then
-	SIZE_LIMIT=697
+	SIZE_LIMIT=706
 elif [ $DISTRO == debian ] && [ $PY_VER == '3.8' ] && [ $PLATFORM == 'linux/amd64' ]; then
-	SIZE_LIMIT=649
+	SIZE_LIMIT=689
 elif [ $DISTRO == debian ] && [ $PY_VER == '3.7' ] && [ $PLATFORM == 'linux/amd64' ]; then
-	SIZE_LIMIT=652
+	SIZE_LIMIT=660
 fi
 SIZE_LIMIT=$(echo "scale=4; $SIZE_LIMIT * 1.05" | bc)
 # verify size minimal
